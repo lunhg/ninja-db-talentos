@@ -1,0 +1,67 @@
+{
+  "name": "ninja-bd-talentos",
+  "description": "API de habilidades de membros",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Guilherme Lunhani",
+    "email": "lunhanig@gmail.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "engines": {
+    "node": "^10.0.0",
+    "yarn": ">= 0.18.0"
+  },
+  "scripts": {
+    "lint": "eslint src/. test/. --config .eslintrc.json",
+    "test:clean": "rm test/tmp/**/*.json",
+    "test": "mocha --file ./test/all.js --exclude ./test/**.test.js --timeout 10000",
+    "dev": "nodemon src/",
+    "start": "node src/"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ],
+    "ignore": []
+  },
+  "dependencies": {
+    "@feathersjs/authentication": "^4.5.1",
+    "@feathersjs/authentication-local": "^4.5.1",
+    "@feathersjs/authentication-oauth": "^4.5.1",
+    "@feathersjs/configuration": "^4.5.1",
+    "@feathersjs/errors": "^4.5.1",
+    "@feathersjs/express": "^4.5.1",
+    "@feathersjs/feathers": "^4.5.1",
+    "@feathersjs/transport-commons": "^4.5.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "feathers-sequelize": "^6.1.0",
+    "helmet": "^3.21.2",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.4",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.8.0",
+    "faker": "^4.1.0",
+    "it-each": "^0.4.0",
+    "mocha": "^7.0.1",
+    "nodemon": "^2.0.2"
+  }
+}
