@@ -80,6 +80,9 @@ Exists some models:
     - areas under `/areas` path. Belongs to `users` and has many `habilidades`;
     - habilidades under `/habilidades` path. Belongs to `areas` and has many `linguagens`
     - linguagens under `/linguages` path and belongs to `habilidades`;
+    
+A special path exists under `/authentication` and requires only POST methods. This is used to be the `login`. When `POST /authentication` runs with success, it returns a jwt token.
+
 
 ## Scaffolding
 
