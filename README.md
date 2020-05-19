@@ -2,45 +2,44 @@
 
 > API de habilidades de membros do midia ninja
 
-## Getting Started
+## Iniciando
 
-Getting up and running is as easy as 1, 2, 3.
+### Dependências
 
-### Make sure 
+Tenha certeza que você tem:
 
-Make sure you have:
-
-    - [NodeJS](https://nodejs.org/) installed
-    - [npm](https://www.npmjs.com/) installed
-    - [yarn](https://www.yarnpkg.com) installed
-    - a running mysql server. You could run one under docker [here](https://www.github.com/lunhg/alpine-mariadb)
+    - [NodeJS](https://nodejs.org/) instalado
+    - [npm](https://www.npmjs.com/) instalado
+    - [yarn](https://www.yarnpkg.com) instalado
+    - Um servidor mysql rodando. Você pode habilitar um aqui (https://www.github.com/lunhg/alpine-mariadb)
     
-### Install your dependencies
+#### Instalação
 
     ```
     cd path/to/ninja-bd-talentos
     npm install
     ```
 
-### Configure database:
+#### Configure a base de dados:
 
-Go to `config/default.json` and search for `mysql` field; change it according your credentials.
+Vá para o arquivo `config/default.json` e procure pelo campo `mysql`; modifique-o de acordo com suas credenciais.
 
 Ex.:
 
     "mysql": "mysql://<user>:<pwd>@<ip>:3306/<db>"
 
-### Configure a special folder for tests
+#### Crie pastas especiais para os testes
 
     mkdir test/tmp
+    mkdir test/tmp/users
     
-### Start your app
+### Execute seu aplicativo
 
     ```
     npm start
     ```
 
-or 
+ou
 
     ```
     yarn start
@@ -49,37 +48,41 @@ or
 
 ## Testing
 
-Simply run:
+Execute:
 
   ```
   npm test
   ``` 
   
-or 
+ou
 
   ```
   yarn test
   ``` 
   
-and all your tests in the `test/` directory will be run.
+e todos os testes na pasta `test/` serão executados.
 
-#### Observations
+#### Observações
 
-    - When you run a test you create fake users in your database;
-    - When you run a test you create credentials under `test/tmp`
+Quando você executa um teste, você:
 
-#### Test libraries
+* cria usuário `fake` na sua base de dados;
+* credenciais `fake` na pasta `test/tmp`;
 
-Testing are made with `mocha`, `chai` and `it-each` packages under `test/all.js`. Please see specific documentation.
+#### Bibliotecas de testes
 
-## Models and service
+Testes são feitos principalmente com os pacotes `mocha`, `chai` e `it-each`. Veja mais detalhes nas documentações específicas.
 
-Exists some models:
+Os testes são gerenciados pelo arquivo `test/all.js`. 
 
-    - users under `/users` path and requires authentication (email and password). Has many `areas`;
-    - areas under `/areas` path. Belongs to `users` and has many `habilidades`;
-    - habilidades under `/habilidades` path. Belongs to `areas` and has many `linguagens`
-    - linguagens under `/linguages` path and belongs to `habilidades`;
+## Modelos e serviços
+
+Existem alguns modelos:
+
+    - usuários estão no caminho `/users` e reque autenticação (email e senha). Tem várias `areas`;
+    - areas estão no caminho `/areas`. Pertencem aos `users` e tem muitas `habilidades`;
+    - habilidades estão no caminho `/habilidades`. Pertencem às `areas` e tem muitas `linguagens`
+    - linguagens estão no caminho `/linguagens`. Pertencem às `habilidades`;
 
 ## Scaffolding
 
@@ -99,12 +102,12 @@ For more information on all the things you can do with Feathers visit [docs.feat
 
 ## Changelog
 
-  - 0.0.1: created the project with users test
+  - 0.0.1: Projeto criado e elaborado testes iniciais em usuários
   
 ## TODO
 
-  - tests for areas model
-  - tests for habilidades model
-  - tests for linguagens model
-  - add docker
-  - change `mysql` field to be filled by environment variables
+  - testes para modelo de áreas
+  - testes para modelo de habilidades
+  - testes para modelo de linguagens
+  - adicionar docker
+  - mudar campo `mysql` para ser preenchido por variáveis de ambiente
