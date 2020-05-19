@@ -33,7 +33,8 @@ module.exports = function (app) {
   habilidades.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    const { linguagens } = models;
+    const { areas, linguagens } = models;
+    habilidades.belongsTo(areas);
     habilidades.hasMany(linguagens);
   };
 

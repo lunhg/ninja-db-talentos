@@ -79,10 +79,10 @@ Os testes são gerenciados pelo arquivo `test/all.js`.
 
 Existem alguns modelos:
 
-    - usuários estão no caminho `/users` e reque autenticação (email e senha). Tem várias `areas`;
-    - areas estão no caminho `/areas`. Pertencem aos `users` e tem muitas `habilidades`;
-    - habilidades estão no caminho `/habilidades`. Pertencem às `areas` e tem muitas `linguagens`
-    - linguagens estão no caminho `/linguagens`. Pertencem às `habilidades`;
+* usuários estão no caminho `/users` e reque autenticação (email e senha). Tem várias `areas`;
+* areas estão no caminho `/areas`. Pertencem aos `users` e tem muitas `habilidades`;
+* habilidades estão no caminho `/habilidades`. Pertencem às `areas` e tem muitas `linguagens`;
+*linguagens estão no caminho `/linguagens`. Pertencem às `habilidades`;
 
 ## Scaffolding
 
