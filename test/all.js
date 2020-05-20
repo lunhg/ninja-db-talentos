@@ -16,7 +16,8 @@ const TEST = {
   api: require('./api.test'),
   users: {
     members: [],
-    post: require('./methods/post.users.test')
+    signup: require('./methods/post.users.test'),
+    signin: require('./methods/post.authentication.test')
   }
 }
 
@@ -60,7 +61,9 @@ describe('Application tests', () => {
     it('should linguagens to be available', TEST.api(app, 'linguagens'));
   });
 
-  describe('Application signup, verification and login', () => {
-    it.each(TEST.users.members, 'should create user and send token verification', TEST.users.post(chai, addr));
+  describe('Application signup and login', () => {
+    it.each(TEST.users.members, 'should %s signup', ['email'], TEST.users.signup(chai, addr));
+    it.each(TEST.users.members, 'should %s signin', ['email'],
+            TEST.users.signin(chai, addr));
   });
 });

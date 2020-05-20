@@ -3,7 +3,6 @@ const path = require('path');
 
 module.exports = function(chai, server) {
   return function(user, next) {
-    console.log(user);
     chai
       .request(server)
       .post('/users')
