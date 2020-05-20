@@ -8,19 +8,40 @@
 
 Tenha certeza que você tem:
 
-    - [NodeJS](https://nodejs.org/) instalado
-    - [npm](https://www.npmjs.com/) instalado
-    - [yarn](https://www.yarnpkg.com) instalado
-    - Um servidor mysql rodando. Você pode habilitar um aqui (https://www.github.com/lunhg/alpine-mariadb)
-    
+* [NodeJS](https://nodejs.org/) instalado
+* [npm](https://www.npmjs.com/) instalado
+* [yarn](https://www.yarnpkg.com) instalado
+* Um servidor mysql rodando. Você pode habilitar um aqui (https://www.github.com/lunhg/alpine-mariadb)
+
 #### Instalação
 
-    ```
-    cd path/to/ninja-bd-talentos
-    npm install
-    ```
+##### Node.js
 
-#### Configure a base de dados:
+Sugiro você instalar através do [`nvm`](https://github.com/search?utf8=%E2%9C%93&q=nvm)
+
+* [Linux](https://github.com/nvm-sh/nvm)
+* [Windows](https://github.com/coreybutler/nvm-windows)
+
+##### NPM
+
+Uma vez instalado o `node`, o `npm` já vem incluído. Para checar execute o seguinte comando (linux):
+
+    $> npm --version
+
+##### Yarn
+
+Yarn é um gerenciador de pacotes bem bacana. Para instalar, execute:
+
+    $> npm install -g yarn
+    $> yarn --version
+    
+##### Dependências do aplicativo
+
+    $> git clone https://github.com/lunhg/ninja-db-talentos.git
+    $> cd path/to/ninja-bd-talentos
+    $> yarn install
+
+##### Configure a base de dados:
 
 Vá para o arquivo `config/default.json` e procure pelo campo `mysql`; modifique-o de acordo com suas credenciais.
 
@@ -28,10 +49,11 @@ Ex.:
 
     "mysql": "mysql://<user>:<pwd>@<ip>:3306/<db>"
 
-#### Crie pastas especiais para os testes
+##### Crie pastas especiais para os testes
 
     mkdir test/tmp
     mkdir test/tmp/users
+    
     
 ### Execute seu aplicativo
 
@@ -46,7 +68,7 @@ ou
     ```
 
 
-## Testing
+### Testando
 
 Execute:
 
@@ -84,24 +106,22 @@ Existem alguns modelos:
 * habilidades estão no caminho `/habilidades`. Pertencem às `areas` e tem muitas `linguagens`;
 *linguagens estão no caminho `/linguagens`. Pertencem às `habilidades`;
 
+
+
 ## Scaffolding
 
-Feathers has a powerful command line interface. Here are a few things it can do:
+Este projeto é baseado no [Feathers.js](https://docs.feathersjs.com). Ele tem uma interface de linha comando semelhante às aplicações como ruby on rails ou django:
 
 ```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers help                           # Show all commands
+$> npm install -g @feathersjs/cli          # Instala Feathers CLI
+$> feathers generate service               # Gera um novo serviço
+$> feathers generate hook                  # Gera um novo hook
+$> feathers help                           # Ver todos os comandos
 ```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
 
 ## Changelog
 
+  - 0.0.10: Adicionado teste de login de usuarios
   - 0.0.1: Projeto criado e elaborado testes iniciais em usuários
   
 ## TODO
