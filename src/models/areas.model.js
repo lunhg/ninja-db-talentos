@@ -18,7 +18,7 @@ module.exports = function (app) {
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(4096),
       allowNull: false
     },
   }, {

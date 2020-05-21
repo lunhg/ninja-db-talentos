@@ -26,7 +26,10 @@
   "scripts": {
     "lint": "eslint src/. test/. --config .eslintrc.json",
     "test:clean": "rm test/tmp/**/*.json",
-    "test": "mocha --file ./test/all.js --exclude ./test/**.test.js --timeout 10000",
+    "test:health": "mocha --file ./test/health.js --exclude ./test/*/**.test.js",
+    "test:users": "mocha --file ./test/users.js --exclude ./test/*/**.test.js",
+    "test:areas": "mocha --file ./test/areas.js --exclude ./test/*/**.test.js",
+    "test": "yarn test:health && yarn test:users && yarn test:areas",
     "dev": "nodemon src/",
     "start": "node src/"
   },
