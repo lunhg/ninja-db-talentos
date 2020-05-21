@@ -1,6 +1,6 @@
 # ninja-bd-talentos
 
-> API de habilidades de membros do midia ninja
+> API de habilidades ninjas
 
 ## Iniciando
 
@@ -57,55 +57,67 @@ Ex.:
     
 ### Execute seu aplicativo
 
-    ```
-    npm start
-    ```
+#### Modo dev
 
+    $> npm dev
+    
 ou
 
-    ```
-    yarn start
-    ```
+    $> yarn dev
+    
+#### Modo test
 
-
-### Testando
-
-Execute:
-
-  ```
-  npm test
-  ``` 
-  
+    $> npm test
+   
 ou
 
-  ```
-  yarn test
-  ``` 
+    $> yarn test 
   
 e todos os testes na pasta `test/` serão executados.
 
-#### Observações
+###### Testes individuais:
 
-Quando você executa um teste, você:
+* `yarn test:health`: verifica se está tudo OK no sistema base;
+* `yarn test:users`: cria usuarios
+* `yarn test:areas`: cria areas
 
-* cria usuário `fake` na sua base de dados;
-* credenciais `fake` na pasta `test/tmp`;
+###### Observações
 
-#### Bibliotecas de testes
+Quando você executa um teste, você cria, na base de dados:
 
-Testes são feitos principalmente com os pacotes `mocha`, `chai` e `it-each`. Veja mais detalhes nas documentações específicas.
+* cria usuários `fake` com credenciais `fake` na pasta `test/tmp/users`;
+* cria areas `fake` com credenciais `fake` na pasta `test/tmp/areas`
+* para limpar dados, é necessário:
+  * executar o comando `yarn test:clean`
+  * entrar no `mysql` e executar:
+    * `DROP DATABASE <base de dados>`
+    * `CREATE DATABASE <base de dados>`
 
-Os testes são gerenciados pelo arquivo `test/all.js`. 
+
+#### Modo produção
+
+    $> npm start
+
+ou
+
+    $> yarn start
 
 ## Modelos e serviços
 
 Existem alguns modelos:
 
-* usuários estão no caminho `/users` e reque autenticação (email e senha). Tem várias `areas`;
-* areas estão no caminho `/areas`. Pertencem aos `users` e tem muitas `habilidades`;
-* habilidades estão no caminho `/habilidades`. Pertencem às `areas` e tem muitas `linguagens`;
-*linguagens estão no caminho `/linguagens`. Pertencem às `habilidades`;
-
+* `usuários` estão no caminho `/users`:
+  * Tem várias `áreas`;
+  * Requer autenticação (email e senha ou token JWT);
+* `áreas` estão no caminho `/areas`:
+  * Pertencem aos `users` e tem muitas `habilidades`;
+  * Requer autenticação (token JWT);
+* `habilidades` estão no caminho `/habilidades`:
+  * Pertencem às `areas` e tem muitas `linguagens`;
+  * Requer autenticação (token JWT);
+* `linguagens` estão no caminho `/linguagens`:
+  * Pertencem às `habilidades`;
+  * Requer autenticação (token JWT);
 
 
 ## Scaffolding
