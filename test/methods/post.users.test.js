@@ -13,6 +13,6 @@ module.exports = function(chai, server, callback) {
         chai.expect(res.body).to.have.property('createdAt');
         chai.expect(res.body).to.have.property('updatedAt');
         callback(Object.assign(user, res.body), next);
-      })
+      });
   };
-}
+};

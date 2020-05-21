@@ -6,5 +6,5 @@ module.exports = function(chai, server) {
       done();
     });
   };
-}
+};
 

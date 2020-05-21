@@ -23,4 +23,4 @@ module.exports = function(chai, server, callback) {
         callback(res.body, next);
       });
   };
-}
+};

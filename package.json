@@ -29,7 +29,7 @@
     "test:health": "mocha --file ./test/health.js --exclude ./test/*/**.test.js",
     "test:users": "mocha --file ./test/users.js --exclude ./test/*/**.test.js",
     "test:areas": "mocha --file ./test/areas.js --exclude ./test/*/**.test.js",
-    "test": "yarn test:health && yarn test:users && yarn test:areas",
+    "test": "yarn lint && yarn test:health && yarn test:users && yarn test:areas",
     "dev": "nodemon src/",
     "start": "node src/"
   },

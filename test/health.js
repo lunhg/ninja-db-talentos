@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 const TEST = {
   app: require('./app.test'),
   api: require('./api.test')
-}
+};
 
 // Tests configuration
 const addr = 'http://localhost:3030';

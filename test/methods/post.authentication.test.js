@@ -1,6 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
 module.exports = function(chai, server, callback) {
   return function(user, next) {
     chai
@@ -19,4 +16,4 @@ module.exports = function(chai, server, callback) {
         callback(Object.assign(user, res.body), next);
       });
   };
-}
+};

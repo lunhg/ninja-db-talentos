@@ -5,4 +5,4 @@ module.exports = (app, service) => {
     assert.ok(app.service(service));
     done();
   };
-}
+};

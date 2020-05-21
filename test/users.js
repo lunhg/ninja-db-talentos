@@ -21,7 +21,7 @@ for(let i=0; i < 2; i++){
     email: faker.internet.email(),
     password: faker.internet.password()
   };
-};
+}
 
 
 // Tests configuration
@@ -34,7 +34,7 @@ const onSignup = function(data, next){
     chai.expect(e).to.be.null;
     next();
   });
-}
+};
 
 // on signin
 const onSignin = function(data, next){
