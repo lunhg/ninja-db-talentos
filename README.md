@@ -121,7 +121,8 @@ $> feathers help                           # Ver todos os comandos
 
 ## Changelog
 
-  - 0.0.10: Adicionado teste de login de usuarios
+  - 0.0.11: Adicionado teste de POST `/areas`
+  - 0.0.10: Adicionado teste de POST `/users` e POST `/authentication` no modo local
   - 0.0.1: Projeto criado e elaborado testes iniciais em usuários
   
 ## TODO
