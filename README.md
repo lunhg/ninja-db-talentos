@@ -83,16 +83,16 @@ e todos os testes na pasta `test/` serão executados.
 
 ###### Observações
 
-Quando você executa um teste, você cria, na base de dados:
+Quando você executa um teste, você cria, na base de dados e em um arquivo `test/test.db.json`:
 
-* cria usuários `fake` com credenciais `fake` na pasta `test/tmp/users`;
-* cria areas `fake` com credenciais `fake` na pasta `test/tmp/areas`
+* cria usuários `fake`;
+* cria áreas `fake`;
+* criar habilidades `fake`;
 * para limpar dados, é necessário:
-  * executar o comando `yarn test:clean`
+  * executar o comando `yarn test:clean` (executado automaticamente com `yarn test`)
   * entrar no `mysql` e executar:
     * `DROP DATABASE <base de dados>`
     * `CREATE DATABASE <base de dados>`
-
 
 #### Modo produção
 
@@ -133,14 +133,15 @@ $> feathers help                           # Ver todos os comandos
 
 ## Changelog
 
+  - 0.0.12: Adicionado teste de POST `/habilidades`; testes com 'mock' através do pacote `lowdb`;
   - 0.0.11: Adicionado teste de POST `/areas`
   - 0.0.10: Adicionado teste de POST `/users` e POST `/authentication` no modo local
   - 0.0.1: Projeto criado e elaborado testes iniciais em usuários
   
 ## TODO
 
-  - testes para modelo de áreas
-  - testes para modelo de habilidades
   - testes para modelo de linguagens
+  - testes de GET (all), GET (one), PUT, PATCH e DELETE
+  - testes com verificação de email;
   - adicionar docker
   - mudar campo `mysql` para ser preenchido por variáveis de ambiente
