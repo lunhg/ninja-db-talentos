@@ -13,7 +13,7 @@ module.exports = function(chai, server, callback) {
         chai.expect(res).to.have.property('body');
         chai.expect(res.body).to.have.property('user');
         chai.expect(res.body).to.have.property('accessToken');
-        callback(Object.assign(user, res.body), next);
+        callback(res.body, next);
       });
   };
 };

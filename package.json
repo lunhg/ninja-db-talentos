@@ -25,11 +25,12 @@
   },
   "scripts": {
     "lint": "eslint src/. test/. --config .eslintrc.json",
-    "test:clean": "rm test/tmp/**/*.json",
+    "test:clean": "rm ./test/test.db.json",
     "test:health": "mocha --file ./test/health.js --exclude ./test/*/**.test.js",
     "test:users": "mocha --file ./test/users.js --exclude ./test/*/**.test.js",
     "test:areas": "mocha --file ./test/areas.js --exclude ./test/*/**.test.js",
-    "test": "yarn lint && yarn test:health && yarn test:users && yarn test:areas",
+    "test:habilidades": "mocha --file ./test/habilidades.js --exclude ./test/*/**.test.js",
+    "test": "yarn lint && yarn test:health && yarn test:users && yarn test:areas && yarn test:habilidades && yarn test:clean",
     "dev": "nodemon src/",
     "start": "node src/"
   },
@@ -64,6 +65,7 @@
     "eslint": "^6.8.0",
     "faker": "^4.1.0",
     "it-each": "^0.4.0",
+    "lowdb": "^1.0.0",
     "mocha": "^7.0.1",
     "nodemon": "^2.0.2"
   }

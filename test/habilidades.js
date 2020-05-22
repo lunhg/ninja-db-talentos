@@ -14,7 +14,7 @@ const db = lowdb(adapter);
 
 // local libraries
 const app = require('../src/app');
-const create = require('./methods/post.areas.test');
+const create = require('./methods/post.habilidades.test');
 
 // configuration
 chai.use(chaiHttp);
@@ -24,14 +24,10 @@ const users = db.get('users').value();
 
 // on create area
 const onCreate = function(data, next){
-  db.get('areas').push(data).write();
+  db.get('habilidades').push(data).write();
   db.get('areas')
-    .find({ uuid: data.uuid })
-    .set('habilidades', [])
-    .write();
-  db.get('users')
-    .find({ uuid: data.userUuid })
-    .get('areas')
+    .find({ uuid: data.areaUuid })
+    .get('habilidades')
     .push(data.uuid)
     .write();
   next();
@@ -40,7 +36,7 @@ const onCreate = function(data, next){
 // Tests configuration
 const addr = 'http://localhost:3030';
 
-describe('Create areas', () => {
+describe('Create habilidades', () => {
 
   before((done) => {
     this.server = app.listen(app.get('port'));
@@ -51,5 +47,5 @@ describe('Create areas', () => {
     this.server.close(done);
   });
 
-  it.each(users,'should %s create an area', ['email'], create(chai, addr, onCreate));
+  it.each(users, 'should %s create an habilidade from areas', ['email'], create(chai, addr, onCreate));
 });
