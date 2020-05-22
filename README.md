@@ -74,13 +74,21 @@ ou
     $> yarn test 
   
 e todos os testes na pasta `test/` serão executados.
-
+    
 ###### Testes individuais:
 
 * `yarn test:health`: verifica se está tudo OK no sistema base;
-* `yarn test:users`: cria usuarios
-* `yarn test:areas`: cria areas
+* `yarn test:users`: cria usuarios;
+* `yarn test:areas`: cria areas;
+* `yarn test:habilidade`: cria habildades;
+* `yarn test:clean`: deleta base de dados de mock (auxiliar para testes);
 
+###### Lint
+
+É recomendado verificação de boas práticas de escrita executando:
+
+    $> yarn lint
+    
 ###### Observações
 
 Quando você executa um teste, você cria, na base de dados e em um arquivo `test/test.db.json`:
