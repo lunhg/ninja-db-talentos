@@ -35,7 +35,7 @@ module.exports = function (app) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
     const { areas } = models;
-    users.hasMany(areas);
+    users.belongsToMany(areas, { through: 'UsersAreas' });
   };
 
   return users;

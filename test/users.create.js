@@ -18,9 +18,15 @@ const app = require('../src/app');
 const signup = require('./methods/post.users.test');
 const signin = require('./methods/post.authentication.test');
 
-// configuration
-chai.use(chaiHttp);
+/*
+  TEST configuration
+ */
 
+// requests
+chai.use(chaiHttp);
+const addr = 'http://localhost:3030';
+
+// mock database
 db.defaults({
   users: [],
   areas: [],
@@ -28,6 +34,7 @@ db.defaults({
   linguagens: []
 }).write();
 
+// number of users
 let NUMBER_USERS = 0;
 
 if(!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
@@ -47,20 +54,20 @@ for(let i=0; i < NUMBER_USERS; i++){
     .write();
 }
 
+/*
+  Callback tests
+*/
 
-// Tests configuration
-const addr = 'http://localhost:3030';
-
-// on signup
+// on POST /users
 const onSignup = function(data, next){
   db.get('users')
     .find({ email: data.email })
     .set('uuid', data.uuid)
-    .write();
+    .write()
   next();
 };
 
-// on signin
+// on POST /authentication
 const onSignin = function(data, next){
   db.get('users')
     .find({ uuid: data.user.uuid })
@@ -69,7 +76,8 @@ const onSignin = function(data, next){
   next();
 };
 
-describe('Application signup and login', () => {
+
+describe('Users signup', () => {
 
   before((done) => {
     this.server = app.listen(app.get('port'));
@@ -82,7 +90,8 @@ describe('Application signup and login', () => {
     this.server.close(done);
   });
 
-  it.each(db.get('users').value(),'should %s signup', ['email'], signup(chai, addr, onSignup));
+  describe('POST /users', () => {
+    it.each(db.get('users').value(),'should %s signup', ['email'], signup(chai, addr, onSignup));
+  });
 
-  it.each(db.get('users').value(), 'should %s signin', ['email'], signin(chai, addr, onSignin));
 });
