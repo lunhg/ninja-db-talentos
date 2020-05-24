@@ -2,27 +2,19 @@
 const path = require('path');
 
 // third party libs
-require('it-each')({ testPerIteration: true });
 const faker = require('faker');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-
-// lowdb is used to mock data of mysql
 const lowdb = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync(path.join(__dirname, 'test.db.json'));
-const db = lowdb(adapter);
+require('it-each')({ testPerIteration: true });
 
-// local libraries
+// local libs
 const app = require('../src/app');
-const signup = require('./methods/post.users.test');
-const signin = require('./methods/post.authentication.test');
 
-/*
-  TEST configuration
- */
-
-// requests
+// configuration
+const adapter = new FileSync(path.join(__dirname, 'db.json'));
+const db = lowdb(adapter);
 chai.use(chaiHttp);
 const addr = 'http://localhost:3030';
 
@@ -54,28 +46,21 @@ for(let i=0; i < NUMBER_USERS; i++){
     .write();
 }
 
-/*
-  Callback tests
-*/
+// Test methods
+const signup = require('./methods/post.users.test');
 
 // on POST /users
 const onSignup = function(data, next){
   db.get('users')
     .find({ email: data.email })
     .set('uuid', data.uuid)
-    .write()
-  next();
-};
-
-// on POST /authentication
-const onSignin = function(data, next){
-  db.get('users')
-    .find({ uuid: data.user.uuid })
-    .set('accessToken', data.accessToken)
     .write();
   next();
 };
 
+const users = db.get('users').value();
+const message = 'should %s signup';
+const prop = ['email'];
 
 describe('Users signup', () => {
 
@@ -91,7 +76,7 @@ describe('Users signup', () => {
   });
 
   describe('POST /users', () => {
-    it.each(db.get('users').value(),'should %s signup', ['email'], signup(chai, addr, onSignup));
+    it.each(users, message, prop, signup(chai, addr, onSignup));
   });
 
 });

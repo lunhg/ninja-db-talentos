@@ -15,7 +15,7 @@ module.exports = function(chai, server, callback) {
         chai.expect(res.body.total).to.be.greaterThan(0);
         chai.expect(res.body.data.length).to.be.greaterThan(0);
         chai.expect(res.body.data.length).to.be.at.most(res.body.limit);
-        callback(res.body.data, next);
+        callback(user, next);
       });
   };
 };

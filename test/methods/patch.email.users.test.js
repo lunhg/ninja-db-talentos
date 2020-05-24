@@ -2,14 +2,13 @@ const faker = require('faker');
 
 module.exports = function(chai, server, callback) {
   return function(user, next) {
-    const __new__ = {
-      password: faker.internet.password()
-    };
     chai
       .request(server)
       .patch(`/users/${user.uuid}`)
       .set('Authorization', user.accessToken)
-      .send(__new__)
+      .send({
+        email: faker.internet.email()
+      })
       .end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res).to.have.status(200);
@@ -20,9 +19,7 @@ module.exports = function(chai, server, callback) {
         chai.expect(res.body).to.have.property('createdAt');
         chai.expect(res.body).to.have.property('updatedAt');
         callback({
-          uuid: res.body.uuid,
-          email: res.body.email,
-          password: __new__.password,
+          ...res.body,
           old: {
             email: user.email,
             password: user.password

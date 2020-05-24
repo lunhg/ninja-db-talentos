@@ -17,24 +17,11 @@ const db = lowdb(adapter);
 chai.use(chaiHttp);
 const addr = 'http://localhost:3030';
 
-// Test
-const update = require('./methods/put.users.test');
+const getOne = require('./methods/get.users.test');
 
-const onUpdate = function(data, next){
-  db.get('users')
-    .find({ uuid: data.uuid })
-    .get('old')
-    .push(data.old)
-    .write();
-  db.get('users')
-    .find({ uuid: data.uuid })  
-    .set('email', data.email)
-    .set('password', data.password)
-    .write();
-  next();
-};
+const users = db.get('users').value();
 
-describe('Users updates', () => {
+describe('Users find one', () => {
 
   before((done) => {
     this.server = app.listen(app.get('port'));
@@ -47,7 +34,8 @@ describe('Users updates', () => {
     this.server.close(done);
   });
 
-  describe('PUT /users/:uuid', () => {
-    it.each(db.get('users').value(), 'should %s update email and password', ['email'], update(chai, addr, onUpdate)); 
+  describe('GET /users/:uuid', () => {
+    it.each(users, 'should %s get another users by uuid', ['email'], getOne(chai, addr));
   });
+
 });

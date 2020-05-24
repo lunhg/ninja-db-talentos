@@ -2,34 +2,37 @@
 const path = require('path');
 
 // third party libs
+require('it-each')({ testPerIteration: true });
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+
+// lowdb is used to mock data of mysql
 const lowdb = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
-require('it-each')({ testPerIteration: true });
+const adapter = new FileSync(path.join(__dirname, 'test.db.json'));
+const db = lowdb(adapter);
 
 // local libraries
 const app = require('../src/app');
+const del = require('./methods/delete.users.test');
 
-// configuration
-const adapter = new FileSync(path.join(__dirname, 'db.json'));
-const db = lowdb(adapter);
+/*
+  TEST configuration
+ */
+
+// requests
 chai.use(chaiHttp);
 const addr = 'http://localhost:3030';
 
-// Test
-const update = require('./methods/put.users.test');
+/*
+  Callback tests
+*/
 
-const onUpdate = function(data, next){
+// on PUT /users/:uuid
+const onDelete = function(data, next){
   db.get('users')
     .find({ uuid: data.uuid })
-    .get('old')
-    .push(data.old)
-    .write();
-  db.get('users')
-    .find({ uuid: data.uuid })  
-    .set('email', data.email)
-    .set('password', data.password)
+    .set(null)
     .write();
   next();
 };
@@ -47,7 +50,7 @@ describe('Users updates', () => {
     this.server.close(done);
   });
 
-  describe('PUT /users/:uuid', () => {
-    it.each(db.get('users').value(), 'should %s update email and password', ['email'], update(chai, addr, onUpdate)); 
+  describe('DELETE /users/:uuid', () => {
+    it.each(db.get('users').value(), 'should %s delete itself', ['email'], del(chai, addr, onDelete));
   });
 });

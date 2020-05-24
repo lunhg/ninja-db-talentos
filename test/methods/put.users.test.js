@@ -20,9 +20,15 @@ module.exports = function(chai, server, callback) {
         chai.expect(res.body).to.not.have.property('password');
         chai.expect(res.body).to.have.property('createdAt');
         chai.expect(res.body).to.have.property('updatedAt');
-        callback(Object.assign(res.body, {
-          password: __new__.password
-        }), next);
+        callback({
+          uuid: res.body.uuid,
+          email: res.body.email,
+          password: __new__.password,
+          old: {
+            email: user.email,
+            password: user.password
+          }
+        }, next);
       });
   };
 };
